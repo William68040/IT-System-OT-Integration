@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shared.Enums
+namespace Shared.Models;
+
+public class Order
 {
-    internal class Order
-    {
-    }
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+
+    public string Description { get; set; }
+
+
+
+    
 }

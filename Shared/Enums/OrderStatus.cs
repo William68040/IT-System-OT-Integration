@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shared.Models
+namespace Shared.Enums;
+
+public enum OrderStatus
 {
-    internal class OrderStatus
-    {
-    }
+    Pending,
+    Sent,
+    Completed,
 }

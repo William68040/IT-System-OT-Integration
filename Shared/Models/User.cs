@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shared.Enums
+namespace Shared.Models;
+
+internal class User
 {
-    internal class User
-    {
-    }
 }

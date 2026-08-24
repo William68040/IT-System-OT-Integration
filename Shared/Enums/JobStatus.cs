@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shared.Models
+namespace Shared.Enums;
+
+public enum JobStatus
 {
-    internal class JobStatus
-    {
-    }
+    Waiting,
+    Running,
+    Finished,
+    Failed
 }
