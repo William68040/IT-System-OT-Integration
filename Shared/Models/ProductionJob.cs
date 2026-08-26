@@ -7,9 +7,9 @@ namespace Shared.Models;
 
 public class ProductionJob
 {
-    public int ID { get; set; }
+    public int Id { get; set; }
 
-    public int OrderID { get; set; }
+    public int OrderId { get; set; }
 
     public string MachineName { get; set; } = string.Empty;
 
