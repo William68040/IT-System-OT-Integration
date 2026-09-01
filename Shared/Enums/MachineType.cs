@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Shared.Enums
+namespace Shared.Enums;
+
+public enum MachineType
 {
-    public enum MachineType
-    {
-        Necklace,
-        Bracelet,
-        Ring,
-        Earring
-    }
+    Necklace,
+    Bracelet,
+    Ring,
+    Earring
 }
