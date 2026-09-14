@@ -77,6 +77,116 @@ namespace Shared.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "925 sterling silver necklace",
+                            IsActive = true,
+                            MachineType = 0,
+                            Name = "Silver Necklace",
+                            ProductionTime = 10
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "925 sterling silver ring",
+                            IsActive = true,
+                            MachineType = 2,
+                            Name = "Silver Ring",
+                            ProductionTime = 12
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "925 sterling silver bracelet",
+                            IsActive = true,
+                            MachineType = 1,
+                            Name = "Silver Bracelet",
+                            ProductionTime = 7
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "925 sterling silver earrings",
+                            IsActive = true,
+                            MachineType = 3,
+                            Name = "Silver Earrings",
+                            ProductionTime = 5
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "24k gold necklace",
+                            IsActive = true,
+                            MachineType = 0,
+                            Name = "Gold Necklace",
+                            ProductionTime = 12
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "24k gold ring",
+                            IsActive = true,
+                            MachineType = 2,
+                            Name = "Gold Ring",
+                            ProductionTime = 15
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "18k gold bracelet",
+                            IsActive = true,
+                            MachineType = 1,
+                            Name = "Gold Bracelet",
+                            ProductionTime = 8
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "24k gold earrings",
+                            IsActive = true,
+                            MachineType = 3,
+                            Name = "Gold Earrings",
+                            ProductionTime = 6
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Gold necklace with diamond details",
+                            IsActive = true,
+                            MachineType = 0,
+                            Name = "Diamond Necklace",
+                            ProductionTime = 18
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Gold ring with diamond details",
+                            IsActive = true,
+                            MachineType = 2,
+                            Name = "Diamond Ring",
+                            ProductionTime = 20
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "Gold bracelet with diamond details",
+                            IsActive = true,
+                            MachineType = 1,
+                            Name = "Diamond Bracelet",
+                            ProductionTime = 14
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Description = "Gold earrings with diamond details",
+                            IsActive = true,
+                            MachineType = 3,
+                            Name = "Diamond Earrings",
+                            ProductionTime = 10
+                        });
                 });
 
             modelBuilder.Entity("Shared.Models.ProductionJob", b =>
