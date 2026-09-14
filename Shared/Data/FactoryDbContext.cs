@@ -9,7 +9,13 @@ namespace Shared.Data
 {
     public class FactoryDbContext : DbContext
     {
-        public FactoryDbContext(DbContextOptions<FactoryDbContext> options) : base(options)
+        public FactoryDbContext(DbContextOptions<FactoryDbContext> options)
+            : base(options)
+        {
+        }
+
+        // custructor for design-time DbContext creation (e.g., for migrations)
+        public FactoryDbContext()
         {
         }
 
@@ -17,6 +23,15 @@ namespace Shared.Data
         public DbSet<Order> Orders => Set<Order>();
         public DbSet<ProductionJob> ProductionJobs => Set<ProductionJob>();
         public DbSet<User> Users => Set<User>();
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(
+                    "Server=(localdb)\\MSSQLLocalDB;Database=JewelryFactoryDb;Trusted_Connection=True;TrustServerCertificate=True;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +49,5 @@ namespace Shared.Data
                 .WithOne(j => j.Order)
                 .HasForeignKey<ProductionJob>(j => j.OrderId);
         }
-
     }
 }
