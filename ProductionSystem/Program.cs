@@ -88,13 +88,53 @@ internal class Program
             return;
         }
 
+        Console.Clear();
+
+        Console.WriteLine("=== PRODUCTION STARTED ===");
         Console.WriteLine();
-        Console.WriteLine($"Selected Job #{job.Id}");
+        Console.WriteLine($"Job: {job.Id}");
         Console.WriteLine($"Product: {job.Order.Product.Name}");
         Console.WriteLine($"Machine: {job.MachineName}");
         Console.WriteLine($"Quantity: {job.Order.Quantity}");
         Console.WriteLine();
-        Console.WriteLine("Ready to start production.");
+
+        // Change job status to Running
+        job.Status = JobStatus.Running;
+        job.StartedAt = DateTime.Now;
+
+        db.SaveChanges();
+
+        Console.WriteLine("Production in progress...");
+
+        int productionTime = job.Order.Product.ProductionTime;
+        int totalTime = productionTime * job.Order.Quantity;
+
+   
+        for (int i = 1; i <= totalTime; i++)
+        {
+            Thread.Sleep(500); // simulate production time (500ms per unit of time)
+
+            int progress = i * 100 / totalTime;
+
+            Console.Write($"\rProgress: {progress}%"); // a % that shows the progress of the production
+        }
+
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.WriteLine("Production finished!");
+
+        // Change job status to Finished
+        job.Status = JobStatus.Finished;
+        job.FinishedAt = DateTime.Now;
+
+        // Change order status to Completed
+        job.Order.Status = OrderStatus.Completed;
+
+        db.SaveChanges();
+
+        Console.WriteLine();
+        Console.WriteLine($"Job status: {job.Status}");
+        Console.WriteLine($"Order status: {job.Order.Status}");
 
         Pause();
     }
