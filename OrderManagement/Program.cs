@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
 using Shared.Data;
+using Shared.Enums;
+using Shared.Models;
 
 namespace OrderManagement
 {
@@ -42,8 +43,7 @@ namespace OrderManagement
                         break;
 
                     case "2":
-                        Console.WriteLine("Create order - not implemented yet.");
-                        Pause();
+                        CreateOrder(db);
                         break;
 
                     case "3":
@@ -93,6 +93,69 @@ namespace OrderManagement
 
             }
 
+            static void CreateOrder(FactoryDbContext db)
+            {
+                Console.Clear();
+
+                Console.WriteLine("=== CREATE ORDER ===");
+                Console.WriteLine();
+
+                var products = db.Products.ToList();
+
+                foreach (var product in products)
+                {
+                    Console.WriteLine($"{product.Id}. {product.Name} - {product.Description}");
+                }
+
+                Console.WriteLine();
+
+                Console.Write("Choose product ID: ");
+                string? productInput = Console.ReadLine();
+
+                if (!int.TryParse(productInput, out int productId)) // checks to see if the input is a valid integer
+                {
+                    Console.WriteLine("Invalid product ID.");
+                    Pause();
+                    return;
+                }
+
+                var productToOrder = db.Products.Find(productId);
+
+                if (productToOrder == null)
+                {
+                    Console.WriteLine("Product not found.");
+                    Pause();
+                    return;
+                }
+
+                Console.Write("Enter quantity: ");
+                string? quantityInput = Console.ReadLine();
+
+                if (!int.TryParse(quantityInput, out int quantity) || quantity <= 0)
+                {
+                    Console.WriteLine("Quantity must be greater than 0.");
+                    Pause();
+                    return;
+                }
+
+                var order = new Order
+                {
+                    ProductId = productToOrder.Id,
+                    Quantity = quantity,
+                    Status = OrderStatus.Pending
+                };
+
+                db.Orders.Add(order);
+                db.SaveChanges();
+
+                Console.WriteLine();
+                Console.WriteLine("Order created successfully!");
+                Console.WriteLine($"Product: {productToOrder.Name}");
+                Console.WriteLine($"Quantity: {quantity}");
+                Console.WriteLine($"Status: {order.Status}");
+
+                Pause();
+            }
 
 
         }
