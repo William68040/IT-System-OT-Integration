@@ -2,6 +2,7 @@
 using Shared.Data;
 using Shared.Enums;
 using Shared.Models;
+using System.Net.NetworkInformation;
 
 namespace OrderManagement
 {
@@ -47,8 +48,7 @@ namespace OrderManagement
                         break;
 
                     case "3":
-                        Console.WriteLine("List orders - not implemented yet.");
-                        Pause();
+                        ListOrders(db);
                         break;
 
                     case "4":
@@ -157,6 +157,36 @@ namespace OrderManagement
                 Pause();
             }
 
+            static void ListOrders(FactoryDbContext db)
+            {
+                Console.Clear();
+
+                Console.WriteLine("=== ORDERS ===");
+                Console.WriteLine();
+
+                var orders = db.Orders
+                    .Include(o => o.Product)
+                    .ToList();
+
+                if (orders.Count == 0)
+                {
+                    Console.WriteLine("No orders found.");
+                    Pause();
+                    return;
+                }
+
+                foreach (var order in orders)
+                {
+                    Console.WriteLine($"Order ID: {order.Id}");
+                    Console.WriteLine($"Product: {order.Product.Name}");
+                    Console.WriteLine($"Quantity: {order.Quantity}");
+                    Console.WriteLine($"Status: {order.Status}");
+                    Console.WriteLine($"Created: {order.CreatedAt}");
+                    Console.WriteLine("----------------------------");
+                }
+
+                Pause();
+            }
 
         }
     }
