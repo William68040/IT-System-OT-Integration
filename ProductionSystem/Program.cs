@@ -88,7 +88,6 @@ public class Program
             return;
         }
 
-        Console.Clear();
 
         Console.WriteLine("=== PRODUCTION STARTED ===");
         Console.WriteLine();
