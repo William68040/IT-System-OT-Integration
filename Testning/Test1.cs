@@ -31,7 +31,6 @@ public class FactoryTests
             // Run integration
             IntegrationService.Program.SendOrder(db, order.Id);
                 
-            // Get updated order
             var updatedOrder = db.Orders
                 .First(o => o.Id == order.Id);
 
@@ -47,7 +46,7 @@ public class FactoryTests
         }
         finally
         {
-            // Clean up test data
+            
             var productionJob = db.ProductionJobs
                 .FirstOrDefault(j => j.OrderId == order.Id);
 
@@ -94,7 +93,6 @@ public class FactoryTests
             // Run production
             ProductionSystem.Program.StartProduction(db, productionJob.Id);
 
-            // Get updated data
             var updatedJob = db.ProductionJobs
                 .First(j => j.Id == productionJob.Id);
 
@@ -107,7 +105,7 @@ public class FactoryTests
             // Check that the order is completed
             Assert.AreEqual(OrderStatus.Completed, updatedOrder.Status);
 
-            // Check that start and finish times were saved
+            
             Assert.IsNotNull(updatedJob.StartedAt);
             Assert.IsNotNull(updatedJob.FinishedAt);
         }
