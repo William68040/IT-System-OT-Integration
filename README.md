@@ -12,7 +12,7 @@ Databasen heter JewelryFactoryDb och körs på:
 
 Kör kommandot i Package manager console:
 
-### Update-Database
+Update-Database
 
 ## Admin-login
 
@@ -30,4 +30,4 @@ Projektet består av tre Console Applications:
 
 ### 2. IntegrationService – Systemet som hämtar ordrar och skickar dem vidare till rätt produktionsmaskin.
    
-### 4. ProductionSystem – Systemet som simulerar produktionen och hanterar produktionsjobben.
+### 3. ProductionSystem – Systemet som simulerar produktionen och hanterar produktionsjobben.
