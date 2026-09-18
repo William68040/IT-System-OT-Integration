@@ -5,6 +5,7 @@
 ### Databas
 
 Databasen heter JewelryFactoryDb och körs på:
+
 (localdb)\MSSQLLocalDB
 
 ### Uppdatera databasen
@@ -16,6 +17,7 @@ Kör kommandot i Package manager console:
 ## Admin-login
 
 Username: admin
+
 Password: Admin123
 
 Lösenordet sparas som en BCrypt-hash i databasen.
