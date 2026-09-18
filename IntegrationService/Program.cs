@@ -4,7 +4,7 @@ using Shared.Models;
 
 namespace IntegrationService
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
@@ -67,7 +67,7 @@ namespace IntegrationService
             }
         }
 
-        static void SendOrder(FactoryDbContext db, int orderId)
+        public static void SendOrder(FactoryDbContext db, int orderId)
         {
             var order = db.Orders
                 .FirstOrDefault(o => o.Id == orderId);
@@ -75,14 +75,14 @@ namespace IntegrationService
             if (order == null)
             {
                 Console.WriteLine("Order not found.");
-                Pause();
+                
                 return;
             }
 
             if (order.Status != OrderStatus.Pending)
             {
                 Console.WriteLine("This order is not waiting for integration.");
-                Pause();
+                
                 return;
             }
 
@@ -92,7 +92,7 @@ namespace IntegrationService
             if (product == null)
             {
                 Console.WriteLine("Product not found.");
-                Pause();
+                
                 return;
             }
 
@@ -119,7 +119,7 @@ namespace IntegrationService
             Console.WriteLine("Production job created.");
             Console.WriteLine("Order status changed to Sent.");
 
-            Pause();
+            
         }
 
         static string GetMachineName(MachineType machineType)

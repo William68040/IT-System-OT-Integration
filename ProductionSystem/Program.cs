@@ -4,7 +4,7 @@ using Shared.Enums;
 
 namespace ProductionSystem;
 
-internal class Program
+public class Program
 {
     static void Main(string[] args)
     {
@@ -67,7 +67,7 @@ internal class Program
         }
     }
 
-    static void StartProduction(FactoryDbContext db, int jobId)
+    public static void StartProduction(FactoryDbContext db, int jobId)
     {
         var job = db.ProductionJobs
             .Include(j => j.Order)
@@ -77,14 +77,14 @@ internal class Program
         if (job == null)
         {
             Console.WriteLine("Production job not found.");
-            Pause();
+            
             return;
         }
 
         if (job.Status != JobStatus.Waiting)
         {
             Console.WriteLine("This job is not waiting for production.");
-            Pause();
+            
             return;
         }
 
@@ -136,7 +136,7 @@ internal class Program
         Console.WriteLine($"Job status: {job.Status}");
         Console.WriteLine($"Order status: {job.Order.Status}");
 
-        Pause();
+        
     }
 
     static void Pause()

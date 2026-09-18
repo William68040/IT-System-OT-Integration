@@ -3,4 +3,5 @@
   <Project Path="OrderManagement/OrderManagement.csproj" />
   <Project Path="ProductionSystem/ProductionSystem.csproj" Id="0fc7fd4f-260d-4982-86dd-faf8d08befca" />
   <Project Path="Shared/Shared.csproj" Id="76d1fa0b-ae53-4462-9b32-5d20bf1fc1cc" />
+  <Project Path="Testning/Testning.csproj" Id="3f215ef2-e1f0-437e-b55d-b94fe8904064" />
 </Solution>
